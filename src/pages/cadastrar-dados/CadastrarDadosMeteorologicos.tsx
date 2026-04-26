@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import Footer from "../../components/footers/Footer";
 import NavBar from "../../components/headers/NavBar";
+import { cadastrarClima } from '../../services/climaServices';
 
 
 const TEMPOS = ['Limpo', 'Tempestade']
@@ -15,8 +16,8 @@ export default function CadastrarDadosMeteorologicos(){
   tempoNoite: '',
   turnoDia: 'Dia',
   turnoNoite: 'Noite',
-  tempMax: '',
-  tempMin: '',
+  tempMaxima: '',
+  tempMinima: '',
   precipitacao: '',
   humidade: '',
   velocidadeVento: '',
@@ -27,14 +28,14 @@ export default function CadastrarDadosMeteorologicos(){
   { campo: form.data, mensagem: 'Data é obrigatória' },
   { campo: form.tempoDia, mensagem: 'Tempo do dia é obrigatório' },
   { campo: form.tempoNoite, mensagem: 'Tempo da noite é obrigatório' },
-  { campo: form.tempMax, mensagem: 'Temperatura máxima é obrigatória' },
-  { campo: form.tempMin, mensagem: 'Temperatura mínima é obrigatória' },
+  { campo: form.tempMaxima, mensagem: 'Temperatura máxima é obrigatória' },
+  { campo: form.tempMinima, mensagem: 'Temperatura mínima é obrigatória' },
   { campo: form.precipitacao, mensagem: 'Precipitação é obrigatória' },
   { campo: form.humidade, mensagem: 'Humidade é obrigatória' },
   { campo: form.velocidadeVento, mensagem: 'Velocidade do vento é obrigatória' },
 ];
 
-  const cadastrarDados = () => {
+  const cadastrarDados = async () => {
     for (const item of camposObrigatorios) {
       if (!item.campo) {
         toast.error(item.mensagem);
@@ -42,8 +43,25 @@ export default function CadastrarDadosMeteorologicos(){
       }
     }
 
-    toast.success('Dados cadastrados com sucesso!');
-    console.log(form);
+    const payload = {
+    cidade: form.cidade,
+    data: form.data,
+    tempoDia: form.tempoDia.toUpperCase(),
+    tempoNoite: form.tempoNoite.toUpperCase(),
+    tempMinima: Number(form.tempMinima),
+    tempMaxima: Number(form.tempMaxima),
+    precipitacao: Number(form.precipitacao),
+    humidade: Number(form.humidade),
+    velocidadeVento: Number(form.velocidadeVento),
+  };
+
+    try {
+      await cadastrarClima(payload);
+      toast.success('Dados cadastrados com sucesso!');
+    } catch (error: any) {
+      console.log(error.response)
+      toast.error('Erro ao cadastrar dados');
+    }
   };
 
     return(
@@ -118,9 +136,9 @@ export default function CadastrarDadosMeteorologicos(){
             <input
               className="input"
               type="number"
-              value={form.tempMax}
+              value={form.tempMaxima}
               onChange={(e) =>
-                setForm({ ...form, tempMax: e.target.value })
+                setForm({ ...form, tempMaxima: e.target.value })
               }
             />
           </div>
@@ -130,9 +148,9 @@ export default function CadastrarDadosMeteorologicos(){
             <input
               className="input"
               type="number"
-              value={form.tempMin}
+              value={form.tempMinima}
               onChange={(e) =>
-                setForm({ ...form, tempMin: e.target.value })
+                setForm({ ...form, tempMinima: e.target.value })
               }
             />
           </div>
