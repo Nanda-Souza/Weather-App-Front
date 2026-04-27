@@ -1,0 +1,10 @@
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-icon {
+  cursor: pointer;
+}
+

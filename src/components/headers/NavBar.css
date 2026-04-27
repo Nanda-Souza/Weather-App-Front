@@ -7,13 +7,14 @@
   margin-bottom: 20px;
 }
 
-.navbar a {
+.navbar span {
   color: #ddd;
   text-decoration: none;
   font-weight: 500;
+  cursor: pointer;
 }
 
-.navbar a.active {
+.navbar span.active {
   border-bottom: 1px solid #fff;
   color: #fff;
 }

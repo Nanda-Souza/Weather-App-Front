@@ -117,3 +117,45 @@ body {
   background: rgba(255, 255, 255, 0.2);
   color: #fff;  
 }
+
+.header {
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.col {
+  flex: 1;
+}
+
+.col.cidade {
+  flex: 2;
+}
+
+.col.data {
+  flex: 1;
+  text-align: center;
+}
+
+.col.acao {
+  flex: 1;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.8;
+}
