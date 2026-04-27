@@ -8,3 +8,11 @@ export const cadastrarClima = async (data: any) => {
   const response = await api.post('/clima/cadastrar', data);
   return response.data;
 };
+
+export const buscarClima = async (cidade?: string) => {
+  const response = await api.get("/clima/buscar", {
+    params: cidade ? { cidade } : {},
+  });
+
+  return response.data;
+};
