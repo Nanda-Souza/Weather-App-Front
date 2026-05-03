@@ -3,7 +3,6 @@ import './ListarDadosMeteorologicos.css'
 import Footer from "../../components/footers/Footer";
 import NavBar from "../../components/headers/NavBar";
 import { buscarClima } from "../../services/climaServices";
-import { Toaster, toast } from 'react-hot-toast';
 
 interface Clima {
   id: number;
@@ -33,8 +32,7 @@ export default function ListarDadosMeteorologicos(){
       setDados(response);
       setPagina(1);
     } catch (error: any) {
-      console.error(error.response);
-      toast.error('Erro ao listar dados');
+      console.error(error.response);      
       setDados([]);
     } finally {
       setLoading(false);
@@ -58,16 +56,7 @@ export default function ListarDadosMeteorologicos(){
     const dadosPaginados = dadosFiltrados.slice(inicio, fim);
 
     return(
-      <div className="container">
-      <Toaster 
-        position="top-right"
-          toastOptions={{
-          style: {
-            background: '#2a0f4d',
-            color: '#fff',
-          },
-        }} 
-      />
+      <div className="container">      
       <NavBar tela="listar" />
 
       <div className="title">Lista de cidades</div>
