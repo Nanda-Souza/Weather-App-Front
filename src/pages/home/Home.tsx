@@ -3,11 +3,28 @@ import Footer from "../../components/footers/Footer";
 import NavBar from "../../components/headers/NavBar";
 import { buscarClimaHoje } from "../../services/climaServices";
 import './Home.css'
+import precipitacaoIcon from '../../assets/precipitacao.png';
+import humidadeIcon from '../../assets/humidade.png';
+import ventoIcon from '../../assets/velocidade.png';
+import chuvaDia from '../../assets/chuvaDia.png';
+import chuvaNoite from '../../assets/chuvaNoite.png';
+import limpo from '../../assets/limpo.png';
+import nubladoDia from '../../assets/nubladoDia.png';
+import nubladoNoite from '../../assets/nubladoNoite.png';
+import nuvens from '../../assets/nuvens.png';
+import tempestade from '../../assets/tempestade.png';
 
 interface Clima {
   id: number;
   cidade: string;
   data: string;
+  tempoDia: string;
+  tempoNoite: string;
+  tempMinima: number;
+  tempMaxima: number;
+  precipitacao: number;
+  humidade: number;
+  velocidadeVento: number;
 }
 
 export default function Home() {
@@ -32,12 +49,42 @@ export default function Home() {
     }
   }
 
-  function climaHoje() {
-    if (!buscou) return "Busque por uma cidade para exibir os dados!";
-    if (loading) return "Carregando...";
-    if (dados) return "Encontrou Dados!";
-    return "Nenhum dado meteorológico cadastrado!";
-  }
+  function turnoDia() {
+    const hora = new Date().getHours();
+    return hora >= 6 && hora <= 18;
+    }
+
+    function pegarIconePorTurno(dados: Clima) {
+    const dia = turnoDia();
+
+    if (dia) {
+        switch (dados.tempoDia) {
+        case 'LIMPO':
+            return limpo;
+        case 'NUVENS':
+            return nuvens;
+        case 'CHUVA':
+            return chuvaDia;
+        case 'NUBLADO':
+            return nubladoDia;
+        case 'TEMPESTADE':
+            return tempestade;
+        default:
+            return limpo;
+        }
+    } else {
+        switch (dados.tempoNoite) {
+        case 'CHUVA':
+            return chuvaNoite;
+        case 'NUBLADO':
+            return nubladoNoite;
+        case 'TEMPESTADE':
+            return tempestade;
+        default:
+            return limpo;
+        }
+    }
+    }
 
   return (
     <div className="container">
@@ -61,17 +108,54 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="card">
-        <div className="row header">
-          <div className="col cidade">Cidade</div>
-          <div className="col data">Data</div>
-          <div className="col acao">Ação</div>
-        </div>
+        <div className="card">
+            {!buscou ? (
+                <div className="no-items">
+                Busque por uma cidade para exibir os dados!
+                </div>
+            ) : loading ? (
+                <div className="no-items">Carregando...</div>
+            ) : !dados ? (
+                <div className="no-items">
+                Nenhum dado meteorológico cadastrado!
+                </div>
+            ) : (
+                <div className="weather-card">
+                
+                <div className="weather-left">
+                    <img src={pegarIconePorTurno(dados)} alt="clima" className="weather-icon" />
 
-        <div className="no-items">
-          {climaHoje()}
+                    <div className="temp">
+                    <span className="max">{dados.tempMaxima}°</span>
+                    <span className="min">/{dados.tempMinima}°</span>
+                    </div>
+                </div>
+                
+                <div className="weather-right">
+
+                    <div className="weather-item">
+                    <img src={precipitacaoIcon} />
+                    <span>{dados.precipitacao}%</span>
+                    <small>Precipitação</small>
+                    </div>
+
+                    <div className="weather-item">
+                    <img src={humidadeIcon} />
+                    <span>{dados.humidade}%</span>
+                    <small>Humidade</small>
+                    </div>
+
+                    <div className="weather-item">
+                    <img src={ventoIcon} />
+                    <span>{dados.velocidadeVento} km/h</span>
+                    <small>Velocidade vento</small>
+                    </div>
+
+                </div>
+
+                </div>
+            )}
         </div>
-      </div>
 
       <Footer />
     </div>
