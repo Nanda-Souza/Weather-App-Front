@@ -102,7 +102,7 @@ export default function ListarDadosMeteorologicos(){
             <div className="row item" key={item.id}>
               <div className="col cidade">{item.cidade}</div>
               <div className="col data">
-                {new Date(item.data).toLocaleDateString("pt-BR")}
+                {item.data.split('-').reverse().join('/')}
               </div>
               <div className="col acao">
                 <span className="icon">✏️</span>

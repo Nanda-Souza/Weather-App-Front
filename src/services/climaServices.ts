@@ -16,3 +16,11 @@ export const buscarClima = async (cidade?: string) => {
 
   return response.data;
 };
+
+export const buscarClimaHoje = async (cidade: string) => {
+  const response = await api.get("/clima/buscar/hoje", {
+    params: { cidade },
+  });
+
+  return response.data;
+};
