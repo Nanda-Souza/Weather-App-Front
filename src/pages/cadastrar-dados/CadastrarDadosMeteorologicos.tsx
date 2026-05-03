@@ -5,7 +5,8 @@ import NavBar from "../../components/headers/NavBar";
 import { cadastrarClima } from '../../services/climaServices';
 
 
-const TEMPOS = ['Limpo', 'Tempestade']
+const climaDiurno = ['Limpo', 'Nuvens', 'Chuva', 'Nublado', 'Tempestade']
+const climaNoturno = ['Chuva', 'Nublado', 'Tempestade']
 
 export default function CadastrarDadosMeteorologicos(){   
 
@@ -119,7 +120,7 @@ export default function CadastrarDadosMeteorologicos(){
                     Selecione
                   </option>
 
-                  {TEMPOS.map((tempo) => (
+                  {climaDiurno.map((tempo) => (
                     <option key={tempo} value={tempo}>
                       {tempo}
                     </option>
@@ -169,7 +170,7 @@ export default function CadastrarDadosMeteorologicos(){
                     Selecione
                   </option>
 
-                  {TEMPOS.map((tempo) => (
+                  {climaNoturno.map((tempo) => (
                     <option key={tempo} value={tempo}>
                       {tempo}
                     </option>
