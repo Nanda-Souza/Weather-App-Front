@@ -61,3 +61,42 @@
 .weather-item small {
   opacity: 0.7;
 }
+
+.forecast-list {
+  margin-top: 20px;
+}
+
+.forecast-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 100px;
+  align-items: center;
+  padding: 12px 0;
+  opacity: 0.9;
+}
+
+.forecast-date {
+  text-align: left;
+}
+
+.forecast-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.forecast-info span {
+  min-width: 110px;
+  text-align: left;
+}
+
+.forecast-icon {
+  width: 30px;
+}
+
+.forecast-temp {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  font-weight: bold;
+}

@@ -24,3 +24,11 @@ export const buscarClimaHoje = async (cidade: string) => {
 
   return response.data;
 };
+
+export const buscarClima7Dias = async (cidade: string) => {
+  const response = await api.get("/clima/buscar/proximos/7/dias", {
+    params: { cidade },
+  });
+
+  return response.data;
+};
