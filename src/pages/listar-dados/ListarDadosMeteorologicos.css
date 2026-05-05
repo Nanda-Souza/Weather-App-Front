@@ -14,3 +14,8 @@
   opacity: 0.8;
   width: 100%;
 }
+
+.icon img {
+  width: 24px;
+  cursor: pointer;
+}

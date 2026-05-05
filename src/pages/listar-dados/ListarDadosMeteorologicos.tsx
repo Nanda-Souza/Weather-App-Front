@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './ListarDadosMeteorologicos.css'
 import Footer from "../../components/footers/Footer";
 import NavBar from "../../components/headers/NavBar";
 import { buscarClima } from "../../services/climaServices";
+import buscarIcon from '../../assets/buscar.png';
+import editarIcon from '../../assets/editar.png'
+import deletarIcon from '../../assets/deletar.png'
 
 interface Clima {
   id: number;
@@ -23,6 +27,7 @@ export default function ListarDadosMeteorologicos(){
     const [pagina, setPagina] = useState(1);
     const [cidade, setCidade] = useState("");    
     const itensPorPagina = 10;
+    const navigate = useNavigate();
 
     async function carregarDados(cidadeBusca?: string) {
     try {
@@ -75,7 +80,7 @@ export default function ListarDadosMeteorologicos(){
                     className="search-icon"
                     onClick={() => carregarDados(cidade)}
                     >
-                    🔍
+                    <img src={buscarIcon} alt="buscar" />
                 </span>
             </div>
         </div>
@@ -105,8 +110,15 @@ export default function ListarDadosMeteorologicos(){
                 {item.data.split('-').reverse().join('/')}
               </div>
               <div className="col acao">
-                <span className="icon">✏️</span>
-                <span className="icon">🗑️</span>
+                <span 
+                  className="icon"
+                  onClick={() => navigate(`/editar/${item.id}`)}
+                >
+                  <img src={editarIcon} alt="editar" />
+                </span>
+                <span className="icon">
+                  <img src={deletarIcon} alt="deletar" />
+                </span>
               </div>
             </div>
           ))

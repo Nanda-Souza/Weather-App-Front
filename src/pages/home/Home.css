@@ -100,3 +100,13 @@
   gap: 15px;
   font-weight: bold;
 }
+
+.search-icon img {
+  width: 36px;
+  cursor: pointer;
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+}

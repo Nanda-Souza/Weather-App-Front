@@ -14,6 +14,7 @@ import nubladoDia from '../../assets/nubladoDia.png';
 import nubladoNoite from '../../assets/nubladoNoite.png';
 import nuvens from '../../assets/nuvens.png';
 import tempestade from '../../assets/tempestade.png';
+import localizacaoIcon from '../../assets/localizacao.png';
 
 interface Clima {
   id: number;
@@ -133,7 +134,7 @@ export default function Home() {
               onChange={(e) => setCidade(e.target.value)}
             />
             <span className="search-icon" onClick={buscarClima}>
-              🔍
+              <img src={localizacaoIcon} alt="buscar" />
             </span>
           </div>
         </div>

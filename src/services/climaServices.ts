@@ -17,6 +17,11 @@ export const buscarClima = async (cidade?: string) => {
   return response.data;
 };
 
+export const buscarClimaPorId = async (id: number) => {
+  const response = await api.get(`/clima/${id}`);
+  return response.data;
+};
+
 export const buscarClimaHoje = async (cidade: string) => {
   const response = await api.get("/clima/buscar/hoje", {
     params: { cidade },
@@ -32,3 +37,9 @@ export const buscarClima7Dias = async (cidade: string) => {
 
   return response.data;
 };
+
+export const editarClima = async (id: number, data: any) => {
+  const response = await api.patch(`/clima/editar/${id}`, data);
+  return response.data;
+};
+
