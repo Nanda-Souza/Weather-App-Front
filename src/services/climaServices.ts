@@ -43,3 +43,7 @@ export const editarClima = async (id: number, data: any) => {
   return response.data;
 };
 
+export const deletarClima = async (id: number) => {
+  const response = await api.delete(`/clima/${id}`);
+  return response.data;
+};

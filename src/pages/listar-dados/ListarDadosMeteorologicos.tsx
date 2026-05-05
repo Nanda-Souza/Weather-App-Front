@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { Toaster, toast } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import './ListarDadosMeteorologicos.css'
 import Footer from "../../components/footers/Footer";
 import NavBar from "../../components/headers/NavBar";
-import { buscarClima } from "../../services/climaServices";
+import { buscarClima, deletarClima } from "../../services/climaServices";
 import buscarIcon from '../../assets/buscar.png';
 import editarIcon from '../../assets/editar.png'
 import deletarIcon from '../../assets/deletar.png'
@@ -48,6 +49,20 @@ export default function ListarDadosMeteorologicos(){
         carregarDados();
     }, []);
 
+    async function deletarDados(id: number) {
+      try {
+        await deletarClima(id);
+
+        toast.success('Dados deletados com sucesso!');
+        
+        setDados(prev => prev.filter(item => item.id !== id));
+
+      } catch (error: any) {
+        console.log(error.response);
+        toast.error('Erro ao deletar dados');
+      }
+    }
+
     const dadosFiltrados = dados
     .sort((a, b) => {
         return new Date(b.data).getTime() - new Date(a.data).getTime();
@@ -61,7 +76,16 @@ export default function ListarDadosMeteorologicos(){
     const dadosPaginados = dadosFiltrados.slice(inicio, fim);
 
     return(
-      <div className="container">      
+      <div className="container">
+        <Toaster 
+          position="top-right"
+            toastOptions={{
+            style: {
+              background: '#2a0f4d',
+              color: '#fff',
+            },
+          }} 
+        />      
       <NavBar tela="listar" />
 
       <div className="title">Lista de cidades</div>
@@ -116,7 +140,10 @@ export default function ListarDadosMeteorologicos(){
                 >
                   <img src={editarIcon} alt="editar" />
                 </span>
-                <span className="icon">
+                <span 
+                  className="icon"
+                  onClick={() => deletarDados(item.id)}
+                  >
                   <img src={deletarIcon} alt="deletar" />
                 </span>
               </div>
