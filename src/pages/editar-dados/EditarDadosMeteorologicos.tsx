@@ -8,7 +8,7 @@ import NavBar from "../../components/headers/NavBar";
 const climaDiurno = ['Limpo', 'Nuvens', 'Chuva', 'Nublado', 'Tempestade']
 const climaNoturno = ['Chuva', 'Nublado', 'Tempestade']
 
-export default function CadastrarDadosMeteorologicos(){   
+export default function EditarDadosMeteorologico(){   
   const { id } = useParams();
   const navigate = useNavigate();
   const [form, setForm] = useState({

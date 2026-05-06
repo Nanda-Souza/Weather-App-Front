@@ -81,8 +81,9 @@ export default function CadastrarDadosMeteorologicos(){
 
         <div className="form-grid">
             <div className="input-group">
-                <label>Cidade</label>
+                <label htmlFor="cidade">Cidade</label>
                 <input
+                  id="cidade"
                   className="input"
                   value={form.cidade}
                   onChange={(e) =>
@@ -92,8 +93,9 @@ export default function CadastrarDadosMeteorologicos(){
             </div>
 
             <div className="input-group">
-                <label>Data</label>
+                <label htmlFor="data">Data</label>
                 <input
+                  id="data"
                   className="input"
                   type="date"
                   value={form.data}
@@ -108,8 +110,9 @@ export default function CadastrarDadosMeteorologicos(){
         
         <div className="row">
           <div className="input-group w-tempo">
-            <label>Tempo</label>
+            <label htmlFor="tempoDia">Tempo</label>
               <select
+                  id="tempoDia"
                   className="input"
                   value={form.tempoDia}
                   onChange={(e) =>
@@ -133,8 +136,9 @@ export default function CadastrarDadosMeteorologicos(){
           </div>
 
           <div className="input-group w-small">
-            <label>Temperatura Máxima</label>
+            <label htmlFor="tempMaxima">Temperatura Máxima</label>
             <input
+              id="tempMaxima"
               className="input"
               type="number"
               value={form.tempMaxima}
@@ -145,8 +149,9 @@ export default function CadastrarDadosMeteorologicos(){
           </div>
 
           <div className="input-group w-small">
-            <label>Temperatura Mínima</label>
+            <label htmlFor="tempMinima">Temperatura Mínima</label>
             <input
+              id="tempMinima"
               className="input"
               type="number"
               value={form.tempMinima}
@@ -183,8 +188,9 @@ export default function CadastrarDadosMeteorologicos(){
           </div>
 
           <div className="input-group w-small">
-            <label>Precipitação</label>
+            <label htmlFor="precipitacao">Precipitação</label>
             <input
+              id="precipitacao"
               className="input"
               type="text"
               inputMode="numeric"
@@ -199,8 +205,9 @@ export default function CadastrarDadosMeteorologicos(){
           </div>
 
           <div className="input-group w-small">
-            <label>Humidade</label>
+            <label htmlFor="humidade">Humidade</label>
             <input
+              id="humidade"
               className="input"
               type="text"
               inputMode="numeric"
@@ -214,8 +221,9 @@ export default function CadastrarDadosMeteorologicos(){
           </div>
 
           <div className="input-group w-medium">
-            <label>Velocidade do vento</label>
+            <label htmlFor="velocidadeVento">Velocidade do vento</label>
             <input
+              id="velocidadeVento"
               className="input"
               type="text"
               inputMode="numeric"
